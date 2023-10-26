@@ -1,0 +1,22 @@
+﻿@model Traffic_Violation.Models.ProjectViolation
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="row text-center pt-5">
+    <h3>Are you sure you want to pay for it? (@ViewBag.Fine Jod)</h3>
+    <div>    
+        <form asp-action="PayViolation">
+            <input type="hidden" asp-for="Violationid" />
+            <input type="hidden" asp-for="Violationdate" />
+            <input type="hidden" asp-for="Location" />
+            <input type="hidden" asp-for="Violationtypeid" />
+            <input type="hidden" asp-for="Stateid" />
+            <input type="hidden" asp-for="Carid" />
+            <input type="submit" value="Yes" class="btn btn-danger" /> 
+            <a class="btn btn-primary" asp-action="ViolationManagement">Back</a>
+        </form>
+    </div>
+</div>
+

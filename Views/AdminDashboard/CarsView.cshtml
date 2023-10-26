@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Traffic_Violation.Models.ProjectCar>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Violation ManagementT</title>
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>@ViewBag.username Cars</h1>
+        </div>
+    </div>
+
+<table class="table table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+            <th class="text-primary">
+                Plate Number
+            </th>
+            <th class="text-primary">
+                 Brand
+            </th>
+            <th class="text-primary">
+                Model
+            </th>
+            <th class="text-primary">
+                Color
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.Platenumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.Color)
+            </td>
+            <td>
+                <a asp-action="UserViolations" class="btn btn-primary" asp-route-id="@item.Carid">Violations</a> |     
+            </td>
+        </tr>
+}  
+    </tbody>
+</table>
+
+    <div class="row d-flex justify-content-center">
+        <div class=" col-2">
+            <a asp-action="UsersView" class="btn btn-primary btn-lgm me-3" >Back</a>
+
+        </div>
+    </div>
+
+</body>
+</html>
+

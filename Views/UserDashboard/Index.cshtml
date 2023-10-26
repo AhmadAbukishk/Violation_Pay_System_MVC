@@ -1,0 +1,208 @@
+﻿@model Tuple<ProjectUser, ProjectLicense,  IEnumerable<ProjectCar>, IEnumerable<ViolationJoin>>
+
+
+@{
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-lg-8 mb-4 order-0">
+                  <div class="card">
+                    <div class="d-flex align-items-end row">
+                      <div class="col-sm-9">
+                        <div class="card-body">
+                          <h2 class="card-title text-primary">Hey @Model.Item1.Fname, Welcome Back </h2>
+                          <div class="row">
+                              <div class="col-4">
+                                <p><span class="text-primary fw-bold me-1">Name:</span> @Model.Item1.Fname @Model.Item1.Lname</p>
+                              </div>
+                              <div class="col-4 ">
+                                <p><span class="text-primary fw-bold me-1">Address:</span> @Model.Item1.Address</p>
+                              </div>
+                              <div class="col-4">
+                                <p><span class="text-primary fw-bold me-1">Birth Year:</span> @ViewBag.BirthYear</p>
+                              </div>
+                              
+                          </div>
+                          <div class="row">
+                              <div class="col-4">
+                                <p><span class="text-primary fw-bold me-1">Age:</span> @ViewBag.Age</p>
+                              </div>
+                              <div class="col-8">
+                                <p><span class="text-primary fw-bold me-1">Email:</span> @Model.Item1.Email</p>
+                              </div>
+                          </div>
+                          
+                          <a asp-action="Profile" class="btn btn btn-primary mt-2">Edit Profile</a>
+
+                        </div>
+                      </div>
+                      <div class="col-sm-3 text-center text-sm-left pb-5">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                          <img
+                            src=@Url.Content("~/imgs/userimgs/" + Model.Item1.Imgpath)
+                            height="100"
+                            width="100"
+                            alt="View Badge User"
+                            class="rounded-circle"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 order-1">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">              
+                              <h3>License</h3>
+                          </div>
+                          
+                              @if(Model.Item2 != null)
+                              {
+                                  <div class="row">
+                                      <div class="col-6">
+                                          <h5 class="text-primary">Iss Date</h5>
+                                          <h4>@Model.Item2.Issdate.Value.ToString("dd/M/yyyy")</h4>
+                                      </div>
+                                      <div class="col-6">
+                                          <h5 class="text-primary">Exp Date</h5>
+                                          <h4>@Model.Item2.Expdate.Value.ToString("dd/M/yyyy")</h4>
+                                      </div>
+                                  </div>
+
+               
+                                <a asp-action="EditLicense" asp-route-id="@Model.Item2.Licenseid" class="btn btn-primary text-white">Edit</a>
+                              } 
+                              else
+                              {
+                                 <a asp-action="CreateLicense" asp-route-id="@Model.Item1.Userid" class="btn btn-primary">Add</a>
+                              }
+                            
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-7 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                      <div class="">
+                        <h3 class="card-header m-0 me-2 pb-1"> Your Fines</h3>
+                      </div>
+                        <div class="card-body">
+                        <table class="table table-responsive text-nowrap">
+                            <thead class="">
+                                <tr>
+                                    <th>
+                                         <span class="text-primary">Type</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Fine</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Car Number</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Location</span>
+                                    </th>
+           
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int ind1 = 0;}
+                                @foreach (var item in Model.Item4) 
+                                {
+
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.violationType.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.violationType.Fine)  Jod
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.car.Platenumber) 
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem =>  item.violation.Location)
+                                            </td>
+
+
+                                        </tr>
+                                        if (++ind1 == 3) break;
+                                    }  
+                            </tbody>
+                        </table>
+                            <a asp-action="ViolationManagement" class="btn btn-primary mt-3">More</a>
+                        </div>
+                      
+
+                        
+                    </div>
+                  </div>
+                <div class="col-5 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                      <div class="">
+                        <h3 class="card-header m-0 me-2 pb-1">  Your Cars</h3>
+                      </div>
+                        <div class="card-body">
+                        <table class="table table-responsive text-nowrap">
+                            <thead class="">
+                                <tr>
+                                    <th class="display-3">
+                                        <span class="text-primary">Plate Number</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Brand</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Model</span>
+                                    </th>
+                                    <th>
+                                         <span class="text-primary">Color</span>
+                                    </th>
+            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Item3) {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem =>  item.Platenumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Brand)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Model) 
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem =>  item.Color)
+                                            </td>
+
+                                        </tr>
+                                }  
+                            </tbody>
+                        </table>
+                            <a asp-action="CarManagement" class="btn btn-primary mt-3">More</a>
+                        </div>
+                      
+
+                        
+                    </div>
+                  </div>
+
+               </div>
+                
+</div>
+                <!-- Total Revenue -->
+              
+                <!--/ Total Revenue -->
+

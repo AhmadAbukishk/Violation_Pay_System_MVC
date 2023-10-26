@@ -1,0 +1,39 @@
+﻿ @model Traffic_Violation.Models.ProjectLicense
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<hr />
+<div class="row d-flex justify-content-center pt-5">
+    <div class="col-md-6 card p-4">
+        <form asp-action="CreateLicense"  class="mt-3" method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Licenseid" />
+            <div class="form-group mt-4">
+                <label asp-for="Issdate" class="control-label">Iss date</label>
+                <input asp-for="Issdate" type="date" class="form-control" />
+                <span asp-validation-for="Issdate" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Expdate" class="control-label">Exp date</label>
+                <input asp-for="Expdate" type="date" class="form-control" />
+                <span asp-validation-for="Expdate" class="text-danger"></span>
+            </div>
+            <div class="form-group  mt-4">
+                <input asp-for="Userid" value="@ViewBag.Userid" type="hidden" class="form-control" />
+            </div>
+            <div class="form-group mt-4">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

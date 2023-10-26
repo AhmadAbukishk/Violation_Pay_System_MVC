@@ -1,0 +1,37 @@
+﻿@model Traffic_Violation.Models.ProjectUserLogin
+
+@{
+		Layout = "~/Views/Shared/_LogRegLayout.cshtml";
+}
+
+
+ <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Login</h2>
+                    <form method="post">
+                            <div class="">
+                                <div class="input-group">
+                                    <label asp-for="Username" class="label">User Name</label>
+                                    <input asp-for="Username" class="input--style-4" type="text" >
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="input-group">
+                                    <label asp-for="Password" class="label">Password</label>
+                                    <input asp-for="Password" class="input--style-4" type="password" >
+                                </div>
+                            </div>
+                        <div class="p-t-15 mt-3 mb-3">
+                            <button asp-action-for="Login" class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+
+                    </form>
+
+                    <a asp-action="Register" class="text-primary text-decoration-underline pt-4" >Create a new account</a>
+
+                </div>
+            </div>
+        </div>
+    </div>

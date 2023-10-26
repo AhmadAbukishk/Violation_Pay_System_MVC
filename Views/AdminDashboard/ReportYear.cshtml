@@ -1,0 +1,264 @@
+﻿@model Tuple<IEnumerable<LocationCount>, int, IEnumerable<ViolationJoin>>
+
+
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+} 
+
+<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link
+href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link rel='stylesheet' href='~/css/yearpicker.css' />
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="text-center mb-5">
+	    <h1>Report for @ViewBag.Year</h1>
+    </div>
+
+	<div class="row mt-5">
+		<div class="col-2">
+			<form asp-action="ReportYear" class="row mb-4">
+                <div class="col-10 ">
+                    <input type="text" id="year" name="year" class="yearpicker pb-2" />
+                </div>
+				
+                <div class="col-2">
+				    <input class="btn btn-primary" type="submit" value="Select" />
+                </div>
+
+			</form>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<div class="card px-4 py-4">
+				<h3 class="card-title">Violations in cities</h3>
+				<table class="table table-responsive text-nowrap">
+					<thead>
+						<tr>
+							<th>City</th>
+
+							<th>Violations</th>
+							
+							<th>Percentage</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach(var item in Model.Item1)
+						{
+							<tr>
+								<td>@item.location</td>
+								
+								<td>@item.count</td>
+
+								<td>@item.percentage %</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 order-1">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="~/DashboardAssets/assets/img/icons/unicons/chart-success.png"
+                                alt="Credit Card"
+                                class="rounded"
+                              />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt3"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Violations</span>
+                          <h3 class="card-title mb-2">@ViewBag.violationCount</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="~/DashboardAssets/assets/img/icons/unicons/wallet-info.png"
+                                alt="Credit Card"
+                                class="rounded"
+                              />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt6"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span>Fines Total</span>
+                          <h3 class="card-title text-nowrap mb-1">@ViewBag.violationSum Jod</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="~/DashboardAssets/assets/img/icons/unicons/wallet-info.png"
+                                alt="Credit Card"
+                                class="rounded"
+                              />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt6"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span>Fines payed</span>
+                          <h3 class="card-title text-nowrap mb-1">@ViewBag.finesPayed %</h3>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+	</div>
+
+<div class="p-3 mb-2 mt-4 bg-primary text-white text-center font-weight-bold">Violations</div>
+<div class="row">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <form action="search" class="row mt-3 mb-3" method="post">
+                 <div class="col-3">
+                    <input type="date" class="form-control d-inline" name="stratDate" placeholder="Start Date">
+                 </div>
+                 <div class="col-3 ms-2">
+                    <input type="date" class="form-control d-inline" name="endDate" placeholder="End Date">
+                 </div>
+                 <div class="col-3 ms-2">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                 </div>
+
+            </form>
+            <table class="table example">
+                <thead>
+                     <tr>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Fine
+                        </th>
+                        <th>
+                            Location
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Plate Number
+                        </th>
+                        <th>
+                            Brand
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            State
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var item in Model.Item3)
+                {
+                    <tr>
+                           <td> @Html.DisplayFor(modelItem => item.violationType.Name)</td>
+                        <td> @Html.DisplayFor(modelItem => item.violationType.Fine) Jod</td>
+                        <td> @Html.DisplayFor(modelItem => item.violation.Location)</td>
+                        <td> @Html.DisplayFor(modelItem => item.violation.Violationdate)</td>
+                        <td> @Html.DisplayFor(modelItem => item.car.Platenumber)</td>
+                        <td> @Html.DisplayFor(modelItem => item.car.Brand)</td>
+                        <td> @Html.DisplayFor(modelItem => item.car.Model)</td>
+
+                        <td> @Html.DisplayFor(modelItem => item.violationState.Name)</td>
+
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+                    
+
+ </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+<script src="~/js/jquery.min.js"></script>
+<script src= '~/js/yearpicker.js'></script>
+<script>
+    $(document).ready(function () {
+        $('.example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5']
+        });
+    });</script>
+
+<script>
+    $(".yearpicker").yearpicker()
+</script>

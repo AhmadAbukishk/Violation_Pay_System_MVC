@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ViolationJoin>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViolationManagementTemp</title>
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Manage Violations</h1>
+        </div>
+    </div>
+ <form action="ViolationManagement" class="row mt-3" method="post">
+     <div class="col-3">
+        <input type="date" class="form-control d-inline" name="startDate" placeholder="Start Date">
+     </div>
+     <div class="col-3 ms-2">
+        <input type="date" class="form-control d-inline" name="endDate" placeholder="End Date">
+     </div>
+     <div class="col-3 ms-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+     </div>
+
+</form>
+<table class="table table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+
+            <th>
+                Violation Type
+            </th>
+            <th>
+                Fine
+            </th>
+            <th>
+                Car Number
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                State
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>               
+        <form asp-action="PayViolationMultiple" >
+            <div class="row">
+
+            </div>
+            @foreach (var item in Model) {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.violationType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.violationType.Fine) Jod
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem =>  item.car.Platenumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.violation.Location)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.violation.Violationdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.violationState.Name)
+                            </td>
+                            <td>
+                                <a asp-action="PayViolation" class="btn btn-primary" asp-route-id="@item.violation.Violationid">Pay</a> 
+                            </td>
+                             <td>
+                                <input type="checkbox" value="@item.violation.Violationid" id="selectedViolations" name="selectedViolations"/>
+                            </td>
+
+                        </tr>
+             }  
+
+            <div class="row d-flex justify-content-center">
+                <div class=" col-2">
+                    <button class="btn btn-primary" type="submit">Pay Multiple</button> 
+                </div>
+            </div>
+
+        </form>
+    
+    </tbody>
+</table>
+
+    <div class="row d-flex justify-content-center">
+        <div class=" col-2">
+            <a asp-action="PayedViolations" class="btn btn-primary btn-lg" >Past Violations</a>
+        </div>
+    </div>
+
+</body>
+</html>
+

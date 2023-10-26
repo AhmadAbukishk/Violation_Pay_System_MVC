@@ -1,0 +1,125 @@
+﻿@model Traffic_Violation.Models.ProjectUser
+
+
+@{
+    ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+ <div class="container-xxl flex-grow-1 container-p-y">
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card mb-4">
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <form asp-action="Profile"  enctype="multipart/form-data">
+                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card-body">
+                          <div class="d-flex align-items-start align-items-sm-center gap-4">
+                            <img
+                              src=@Url.Content("~/imgs/UserImgs/" + @Model.Imgpath)
+                              alt="user-avatar"
+                              class="d-block rounded"
+                              height="100"
+                              width="100"
+                            />
+                            <div class="button-wrapper">
+                              <label asp-for="ImgFile" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Upload new photo</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                <input
+                                    hidden
+                                  asp-for="ImgFile"
+                                  class="account-file-input"
+                                />
+                              </label>
+                              <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                <i class="bx bx-reset d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Reset</span>
+                              </button>
+
+                              <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                            </div>
+                          </div>
+                        </div>
+                        <hr class="my-0" />
+                        <div class="card-body">
+                     
+                            <div class="row">
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Fname"  class="form-label">First Name</label>
+                                <input
+                                  asp-for="Fname"
+                                  class="form-control"
+                                  type="text"
+                                  autofocus
+                                />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Lname" class="form-label">Last Name</label>
+                                <input asp-for="Lname" class="form-control" type="text" value=@Model.Lname />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Email" class="form-label">E-mail</label>
+                                <input asp-for="Email"
+                                  class="form-control"
+                                  type="text"
+                                  placeholder="john.doe@example.com"
+                                />
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Phonenumber" class="form-label" >Phone Number</label>
+                                <div class="input-group input-group-merge">
+                                  <span class="input-group-text">Jor (+962)</span>
+                                  <input
+                                    asp-for="Phonenumber"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="202 555 0111"
+                                  />
+                                </div>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Address" class="form-label" >City</label>
+                                <select asp-for="Address"  class="select2 form-select">
+                                  <option disabled="disabled" s>Choose option</option>
+                                    <option>Amman</option>
+                                    <option>Aqaba</option>
+                                    <option>Balqa</option>
+                                    <option>Madaba</option>
+                                    <option>Zarqa</option>
+                                    <option>Mafraq</option>
+                                    <option>Karak</option>
+                                    <option>Maan</option>
+                                    <option>Tafilah</option>
+                                    <option>Irbid</option>
+                                </select>
+                              </div>
+                              <div class="mb-3 col-md-6">
+                                <label asp-for="Birthdate" class="form-label">BirthDate</label>
+                                <input asp-for="Birthdate" type="date" class="form-control" />
+                              </div>
+                              
+                              <input type="hidden" asp-for="Userid" />
+                              <input type="hidden" asp-for="Imgpath" />
+                              
+                            </div>
+                            <div class="mt-2">
+                              <button type="submit" value="save" class="btn btn-primary me-2">Save changes</button>
+                              <a asp-action="ChangePassword" asp-route-id="@Model.Userid" class="btn btn-danger me-2">Change Password</a>
+                              <a asp-action="ChangeUsername" asp-route-id="@Model.Userid" class="btn btn-danger me-2">Change Username</a>
+
+
+                            </div>
+                        </div>
+                    </form>
+
+                    @Html.ValidationSummary();
+
+                    <!-- /Account -->
+                  </div>
+                 
+                </div>
+              </div>
+            </div>

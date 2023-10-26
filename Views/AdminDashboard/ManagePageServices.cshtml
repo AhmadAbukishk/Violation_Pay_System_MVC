@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Traffic_Violation.Models.ProjectServiceSection>
+
+@{
+    ViewData["Title"] = "ManagePageServices";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="container mt-5">
+    <div class="row text-center mt-4">
+        <h1>Manage  Services</h1>
+    </div>
+    <div class="row mb-5 mt-5">
+        @foreach (var item in Model) {
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                <img class="card-img-top" src=@Url.Content("~/imgs/ServiceImgs/" + item.Imgpath) alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">
+                        @item.Description
+                    </p>
+                    <a asp-action="EditService" asp-route-id="@item.Serviceid" class="btn btn-primary">Edit Service</a>
+                </div>
+                </div>
+            </div>  
+        }
+    </div>
+</div>
+
+
+

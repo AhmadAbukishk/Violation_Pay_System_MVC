@@ -1,0 +1,26 @@
+﻿@model List<ProjectViolation>
+
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="row text-center pt-5">
+    <h3>Are you sure you want to pay for it? (@ViewBag.Fine Jod)</h3>
+    <div>    
+        <form asp-action="PayViolationMultiples">
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                <input type="hidden" asp-for="@Model[i].Violationid" />
+                <input type="hidden" asp-for="@Model[i].Violationdate" />
+                <input type="hidden" asp-for="@Model[i].Location" />
+                <input type="hidden" asp-for="@Model[i].Violationtypeid" />
+                <input type="hidden" asp-for="@Model[i].Stateid" />
+                <input type="hidden" asp-for="@Model[i].Carid" />
+            }
+            
+            <button type="submit" class="btn btn-danger">Yes</button> 
+            <a class="btn btn-primary" asp-action="ViolationManagement">Back</a>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Traffic_Violation.Models.TestimonialJserJoin>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Manage Testimonials</h1>
+        </div>
+    </div>
+
+<table class="table example table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+            <th class="text-primary">
+                Full Name
+            </th>
+            <th class="text-primary">
+                Date Added
+            </th>
+            <th>
+                 Content
+            </th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+       <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.user.Fname) @Html.DisplayFor(modelItem =>  item.user.Lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.testimonial.Dateadded) 
+            </td>
+            <td>
+                @Html.Raw(item.testimonial.Content.Length > 80 ? item.testimonial.Content.Substring(0, 80) : item.testimonial.Content)...
+            </td>
+
+
+            <td >
+                <a asp-action="AcceptTestimonial" asp-route-id="@item.testimonial.Testimonialid" class="btn btn-success " >Accept</a>
+                <a asp-action="RejectTestimonial" asp-route-id="@item.testimonial.Testimonialid" class="btn btn-danger btn-lgm me-3" >Reject</a>
+            </td>
+       </tr>
+}  
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
+

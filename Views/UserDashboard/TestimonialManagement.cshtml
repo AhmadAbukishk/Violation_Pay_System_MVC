@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Traffic_Violation.Models.TestimonialJoin>
+@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Manage Testimonials</h1>
+        </div>
+    </div>
+
+<table class="table table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+            <th class="text-primary">
+                Date Added
+            </th>
+            <th class="text-primary">
+                 Content
+            </th>
+            <th class="text-primary">
+                State
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.testimonial.Dateadded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.testimonial.Content)
+            </td>
+            <td class="badge bg-warning mt-3">
+                @Html.DisplayFor(modelItem => item.testimonialState.Name) 
+            </td>
+            <td >
+                <a asp-action="EditTestimonial" asp-route-id="@item.testimonial.Testimonialid" class="btn btn-primary " >Edit</a>
+                <a asp-action="DeleteTestimonial" asp-route-id="@item.testimonial.Testimonialid" class="btn btn-danger btn-lgm me-3" >Delete</a>
+            </td>
+
+        </tr>
+}  
+    </tbody>
+</table>
+
+    <div class="row d-flex justify-content-center">
+        <div class=" col-2">
+            <a asp-action="CreateTestimonial" class="btn btn-primary btn-lgm me-3" >Create New</a>
+        </div>
+         <div class=" col-4">
+            <a asp-action="PastTestimonials" class="btn btn-primary btn-lgm me-3" >Past Testimonials</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+

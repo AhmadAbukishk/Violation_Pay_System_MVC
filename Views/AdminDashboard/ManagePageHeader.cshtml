@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Traffic_Violation.Models.ProjectHeaderSection>
+
+@{
+    ViewData["Title"] = "ManagePageHeader";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Manage Headers</h1>
+        </div>
+    </div>
+    <div class="row mb-5 mt-5">
+        @foreach (var item in Model) {
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                <img class="card-img-top" src=@Url.Content("~/imgs/HeaderImgs/" + item.Imgpath) alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+                    <p class="card-text">
+                        @item.Subtitle
+                    </p>
+                    <a asp-action="EditHeader" asp-route-id="@item.Headerid" class="btn btn-primary">Edit Header</a>
+                </div>
+                </div>
+            </div>  
+        }
+    </div>
+</div>
+
+
+

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Traffic_Violation.Models.UserJoin>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViolationManagementTemp</title>
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Users</h1>
+        </div>
+    </div>
+
+<table class="table table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+            <th class="text-primary">
+                Username
+            </th>
+            <th class="text-primary">
+                 Full Name
+            </th>
+            <th class="text-primary">
+                Birthdate
+            </th>
+            <th class="text-primary">
+                Address
+            </th>
+
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.userLogin.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Fname) @Html.DisplayFor(modelItem => item.user.Lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Birthdate) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.user.Address)
+            </td>
+
+            <td>
+                <a asp-action="CarsView" class="btn btn-primary" asp-route-id="@item.user.Userid">Cars</a> |     
+            </td>
+
+        </tr>
+}  
+    </tbody>
+</table>
+
+</body>
+</html>
+

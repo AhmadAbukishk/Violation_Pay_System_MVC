@@ -1,0 +1,68 @@
+﻿@model Traffic_Violation.Models.ProjectViolation
+@{
+    ViewData["Title"] = "CreateViolation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row d-flex justify-content-center pt-5 ">
+    <div class="text-center">
+        
+    </div>  
+     <hr />
+    <div class="col-md-6 card p-4">
+        <h3>CreateViolation</h3>
+        <form asp-action="CreateViolation" class="mt-3" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-4">
+                <label for="ViolationType" class="control-label">Violation Type</label>
+                <select name="ViolationType" id="ViolationType" class="select2 form-select" >
+                    <option>Speeding</option>
+                    <option>Texting</option>
+                    <option>Red Light</option>
+                    <option>Wrong Side</option>
+                    <option>Seat Belt</option>
+                </select>
+            </div>
+            <div class="form-group mt-4">
+                <label for="ViolationType" class="control-label">Location</label>
+                 <select asp-for="Location"  class ="select2 form-select" >
+                    <option selected="selected">Amman</option>
+                    <option>Aqaba</option>
+                    <option>Balqa</option>
+                    <option>Madaba</option>
+                    <option>Zarqa</option>
+                    <option>Mafraq</option>
+                    <option>Karak</option>
+                    <option>Maan</option>
+                    <option>Tafilah</option>
+                    <option>Irbid</option>
+                </select>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Violationdate" class="control-label"></label>
+                <input asp-for="Violationdate" class ="form-control" type="date" />
+                <span asp-validation-for="Violationdate" class="text-danger"></span>
+
+            </div>
+            <div class="form-group mt-4">
+                <label for="CarNumber" class="control-label">Car Number</label>
+                <input id="CarNumber" name="CarNumber" class ="form-control" />
+            </div>
+
+
+             @Html.ValidationSummary()
+            
+            <div class="form-group d-flex justify-content-center mt-5">
+                <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                <a class="btn btn-primary btn-lg ms-3" asp-action="ViolationManagement">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

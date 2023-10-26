@@ -1,0 +1,111 @@
+﻿@{
+	Layout = "~/Views/Shared/_LogRegLayout.cshtml";
+}
+@model Traffic_Violation.Models.ProjectUser
+
+
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form asp-action="Register" method="post" enctype="multipart/form-data">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Fname" class="label">first name</label>
+                                    <input asp-for="Fname" class="input--style-4" type="text" >
+                                    <span asp-validation-for="Fname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Lname" class="label">last name</label>
+                                    <input asp-for="Lname" class="input--style-4" type="text" >
+                                    <span asp-validation-for="Lname" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="ImgFile" class="label"></label>
+                                    <input asp-for="ImgFile"  class="input--style-4 " />
+                                    <span asp-validation-for="ImgFile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Address" class="label">Address</label>
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select asp-for="Address">
+                                            <option disabled="disabled" selected="selected">Choose option</option>
+                                            <option>Amman</option>
+                                            <option>Aqaba</option>
+                                            <option>Balqa</option>
+                                            <option>Madaba</option>
+                                            <option>Zarqa</option>
+                                            <option>Mafraq</option>
+                                            <option>Karak</option>
+                                            <option>Maan</option>
+                                            <option>Tafilah</option>
+                                            <option>Irbid</option>
+                                        </select>
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Email" class="label">Email</label>
+                                    <input asp-for="Email" class="input--style-4" type="email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Phonenumber" class="label">Phone Number</label>
+                                    <input asp-for="Phonenumber" class="input--style-4" type="tel" maxlength="9" >
+                                    <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                        <label for="UserName" class="label">User Name </label>
+                                        <input type="text"  class="input--style-4 " name="UserName" id="UserName" placeholder="User Name"/>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="Password" class="label">Password</label>
+                                    <input type="password"  class="input--style-4 " name="Password" id="Password" placeholder="Password"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="">
+                              <div class="input-group">
+                                    <label asp-for="Birthdate" class="label"></label>
+                                    <input asp-for="Birthdate" type="date" class="input--style-4" />
+                                    <span asp-validation-for="Birthdate" class="text-danger"></span>
+                              </div>
+                       
+                        </div>
+                        <div class="p-t-15 mt-3 mb-3">
+                            <button class="btn btn--radius-2 btn--blue" type="submit" value="Register">Submit</button>
+                        </div>
+
+                    </form>
+                    <a asp-action="Login" class="text-primary text-decoration-underline mt-4" >Already have an account</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

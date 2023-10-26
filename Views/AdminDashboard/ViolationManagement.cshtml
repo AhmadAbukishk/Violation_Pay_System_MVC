@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ViolationJoin>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViolationManagementTemp</title>
+</head>
+<body class="px-5 mt-5">
+    <div class="row mt-3">
+        <div class="text-center">
+            <h1>Manage Violations</h1>
+        </div>
+    </div>
+    
+<table class="table table-responsive text-nowrap">
+    <thead class="">
+        <tr>
+            <th class="text-primary">
+                Violation Type
+            </th>
+            <th class="text-primary">
+                Fine
+            </th>
+            <th class="text-primary">
+                Car Number
+            </th>
+            <th class="text-primary">
+                Location
+            </th>
+            <th class="text-primary">
+                Date
+            </th>
+            <th class="text-primary">
+                State
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.violationType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.violationType.Fine) Jod
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem =>  item.car.Platenumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.violation.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.violation.Violationdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.violationState.Name)
+            </td>
+            <td>
+                <a asp-action="EditViolation" class="btn btn-primary" asp-route-id="@item.violation.Violationid">Edit</a> |     
+                <a asp-action="DeleteViolation" class="btn btn-primary" asp-route-id="@item.violation.Violationid">Delete</a> |            
+                
+            </td>
+
+        </tr>
+}  
+    </tbody>
+</table>
+
+    <div class="row d-flex justify-content-center">
+        <div class=" col-2">
+            <a asp-action="CreateViolation" class="btn btn-primary btn-lg" >Create New</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
